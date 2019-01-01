@@ -4,8 +4,9 @@ https://www.unixmen.com/how-to-install-samba-in-freebsd-9/
 
 I will not give a definition of Samba because every Unix/Linux Administrator should know about it. step-by-step how-to article to setup your FreeBSD Samba server.
 My server
-    root@FreeBSD-unixmen:/root # uname -a
-    FreeBSD FreeBSD-unixmen 9.1-RELEASE FreeBSD 9.1-RELEASE #0 r243826: Tue Dec 4 06:55:root@obrian.cse.buffalo.edu:/usr/obj/usr/src/sys/GENERIC i386
+    
+        root@FreeBSD-unixmen:/root # uname -a
+        FreeBSD FreeBSD-unixmen 9.1-RELEASE FreeBSD 9.1-RELEASE #0 r243826: Tue Dec 4 06:55:root@obrian.cse.buffalo.edu:/usr/obj/usr/src/sys/GENERIC i386
 
 # Install Samba
 
