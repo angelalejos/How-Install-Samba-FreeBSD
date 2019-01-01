@@ -11,19 +11,25 @@ My server
 # Install Samba
 
 You need to have ports installed. After you have it installed, you need to go to the Samba directory        
+        
         root@FreeBSD-unixmen:/root # cd /usr/ports/net/samba36
         root@FreeBSD-unixmen:/root # make install clean
 
 You can add extra components to your Samba server. If you want like Webind and Swat.
-Now edit /etc/rc.conf so that Samba will start with every system boot. Add this line to the file and                    samba_enable="YES"
+Now edit /etc/rc.conf so that Samba will start with every system boot. Add this line to the file and   
+
+        samba_enable="YES"
 
 # Configure Samba
 Edit /usr/local/etc/smb.conf:
+
         root@FreeBSD-unixmen:/root # vi /usr/local/etc/smb.conf
 Specify where you will be able to connect:
+
         ; hosts allow = 192.168.1. 192.168.2. 127.
-Remove the semi-colon and change the IP address so it matches your network. For example, in my hosts allow =            192.168.1. 192.168.0. 127. 10.1.1.
+Remove the semi-colon and change the IP address so it matches your network. For example, in my hosts allow =    192.168.1. 192.168.0. 127. 10.1.1.
 Now configure the share in the same configuration file:
+
         [unixmen]
         comment = Unixmen FreeBSD SAMBA
         path = /Unixmen
@@ -33,6 +39,7 @@ Now configure the share in the same configuration file:
         Save and exit.
         Adding Samba user
 Use command adduser to add unix user. In my situation pirat9:
+
         root@FreeBSD-unixmen:/root # adduser
         Username: pirat9
         Full name: test1 test2
@@ -66,13 +73,16 @@ Use command adduser to add unix user. In my situation pirat9:
         root@FreeBSD-unixmen:/root # mkdir -p /Unixmen
 
 Adding the Samba group and the user pirat9:
+
         root@FreeBSD-unixmen:/root # pw groupadd smbprivate -M pirat9
 
 Change permission on the Samba folder:
+
         root@FreeBSD-unixmen:/root # chgrp smbprivate /Unixmen
         root@FreeBSD-unixmen:/root # chmod 770 /Unixmen
 
 Now it’s time to set the password:
+
         root@FreeBSD-unixmen:/root # smbpasswd -a pirat9
         New SMB password:
         Retype new SMB password:
@@ -80,14 +90,17 @@ Now it’s time to set the password:
         Start the Samba server:
         root@FreeBSD-unixmen:/root # /usr/local/etc/rc.d/samba start
 Removing stale Samba tdb files: . done
+
         Starting nmbd.
         Starting smbd.
 
 Testing the server
 Run this command to test the server:
+
         root@FreeBSD-unixmen:/root # smbclient -U pirat9 -L localhost
 
 Enter pirat9's password:
+
         Domain=[MYGROUP] OS=[Unix] Server=[Samba 3.6.9]
         Sharename Type Comment
         --------- ---- -------
@@ -99,10 +112,13 @@ Enter pirat9's password:
     --------- -------
 
 FREEBSD-UNIXMEN Samba Server
+
         Workgroup Master
         --------- -------
         MYGROUP FREEBSD-UNIXMEN
 
 Now try to connect from a Windows OS machine and login with the Samba credentials:
+
         \\ip-to-your-freebsd-server
+        
 This is how it displays from Windows 7.
