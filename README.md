@@ -12,8 +12,7 @@ My server
 
 You need to have ports installed. After you have it installed, you need to go to the Samba directory        
         
-        root@FreeBSD-unixmen:/root # cd /usr/ports/net/samba36
-        root@FreeBSD-unixmen:/root # make install clean
+        root@FreeBSD-unixmen:/root # pkg install samba48
 
 You can add extra components to your Samba server. If you want like Webind and Swat.
 Now edit /etc/rc.conf so that Samba will start with every system boot. Add this line to the file and   
